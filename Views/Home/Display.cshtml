@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>@ViewBag.Weddings.WedderOne &amp; @ViewBag.Weddings.WedderTwo's Wedding</h1>
+    <div>
+        <h5><a href="/dashboard">Dashboard</a></h5>
+    </div>
+    <div>
+        <h5><a href="/logout">Log Out</a></h5>
+    </div>
+</div>
+<br>
+<div class="vh75">
+    <h3>Date:  @ViewBag.Weddings.WeddingDate</h3>
+    <br>
+        <h3>Guests:</h3>
+    <div class="marlef20">
+        <ul>
+            @foreach (User user in ViewBag.Guests)
+            {
+                <li>
+                    @user.FirstName @user.LastName
+                </li>
+            }
+        </ul>
+    </div>
+    <img src="https://cdn.wccftech.com/wp-content/uploads/2017/03/Google-Maps.jpg" alt="Google Image" width="555px" height="363">
+</div>

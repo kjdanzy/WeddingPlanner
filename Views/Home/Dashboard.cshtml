@@ -1,0 +1,49 @@
+<div class="container ">
+    <div>
+        <h1>Welcome to the Wedding Planner, @ViewBag.User.FirstName!</h1>
+    </div>
+    <div>
+        <h3><a href="/logout">Log Out</a></h3>
+        
+    </div>
+</div>    
+<br>
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Wedding</th>
+            <th>Date</th>
+            <th>Guest</th>
+            <th>Action</th>
+        </tr>
+        @if (ViewBag.myCount > 0){
+            @foreach (Wedding wed in ViewBag.Weddings)
+            {
+                <tr>
+                    
+                    <td><a href="/display/@wed.WeddingId" >@wed.WedderOne &amp; @wed.WedderTwo</a></td>
+                    <td>@wed.WeddingDate</td>
+                    <td>@wed.WedNParticipants.Count</td>
+                    <td>
+                            @if (wed.UserId == ViewBag.loggedUserId){
+                                <span><a href="/deletewedding/@wed.WeddingId">Delete</a></span>
+                            }
+                            else
+                            {
+                                if (wed.WedNParticipants.Any(wp => wp.UserId == ViewBag.loggedUserId)){
+                                    <span><a href="/setrsvp/3/@wed.WeddingId">Un-RSVP</a></span>
+                                }
+                                else
+                                {
+                                    <span><a href="/setrsvp/2/@wed.WeddingId">RSVP</a></span>
+                                }
+                                
+                            }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <br>
+    <a href="/planwedding" class="btn btn-success" >Plan a Wedding</a>
+</div>
